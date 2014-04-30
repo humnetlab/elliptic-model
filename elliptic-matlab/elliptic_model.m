@@ -1,18 +1,13 @@
 function t=elliptic_model(lat,lng,pop,varargin)
-	% Some function that requires 2 inputs and has some optional inputs.
+     numvarargs = length(varargin);
+     if numvarargs > 3
+        error('myfuns:somefun2Alt:TooManyInputs', ...
+	'requires at most 3 optional inputs');
+    end
 
-	% only want 3 optional inputs at most
-	numvarargs = length(varargin);
-	if numvarargs > 3
-	    error('myfuns:somefun2Alt:TooManyInputs', ...
-	        'requires at most 3 optional inputs');
-	end
-
-	% set defaults for optional inputs
-	optargs = {0 "ellipse" 1};
-	optargs(1:numvarargs) = varargin;
-	% Place optional args in memorable variable names
-	[FLEX, option, totalSum] = optargs{:};
+    optargs = {0 "ellipse" 1};
+    optargs(1:numvarargs) = varargin;
+    [FLEX, option, totalSum] = optargs{:};
     r=r_distance(lat,lng);
     d=zeros(size(r));
     r(eye(size(r))==1)=inf;
